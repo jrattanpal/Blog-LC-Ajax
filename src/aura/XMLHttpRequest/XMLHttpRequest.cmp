@@ -1,18 +1,32 @@
 <aura:component >
+    <!-- Address to send Google to get more information -->
     <aura:attribute name="address" type="String" access="global" default="1 Market St, San Francisco, CA 94105, USA" />
+
+    <!-- Google API key to send if needed; OPTIONAL -->
     <aura:attribute name="apikey" type="String" access="global" />
-    
+
+
+    <!-- Message information for ui:message component -->
     <aura:attribute name="msg" type="String" default=""/>
     <aura:attribute name="msgSeverity" type="String" />
     <aura:attribute name="msgTitle" type="String" />
-    
-    <c:Utils aura:id="utils" />	
-    <lightning:input type="text" label="Address" name="{!v.address}" value="{!v.address}" />
-    <lightning:input type="text" label="API Key" name="{!v.apikey}" value="{!v.apikey}"/>
-    <lightning:button label="Call Ajax" onclick="{!c.buttonPress}" />
-    <aura:if isTrue="{! v.msg != '' }">
-	    <ui:message severity="{!msgSeverity}" title="{!v.msgTitle}">
-            {!v.msg}
-        </ui:message>
-    </aura:if>
+
+    <!-- Add utils component to use aura:method -->
+    <c:Utils aura:id="utils" />
+
+    <div class="slds">
+        <!-- User input to ask for address and API key if needed -->
+        <lightning:input type="text" label="Address" name="{!v.address}" value="{!v.address}" />
+        <lightning:input type="text" label="API Key" name="{!v.apikey}" value="{!v.apikey}"/>
+
+        <!-- Send request to Google on button click -->
+        <lightning:button label="Call Ajax" onclick="{!c.buttonPress}" />
+
+        <!-- Display errors or return text on success -->
+        <aura:if isTrue="{! v.msg != '' }">
+            <ui:message severity="{!msgSeverity}" title="{!v.msgTitle}">
+                {!v.msg}
+            </ui:message>
+        </aura:if>
+    </div>
 </aura:component>
