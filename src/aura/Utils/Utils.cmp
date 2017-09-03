@@ -1,0 +1,8 @@
+<aura:component >
+	<aura:method name="callAjax" action="{!c.callAjax}">
+        <aura:attribute name="method" type="String" default="GET" />
+        <aura:attribute name="url" type="String" />
+        <aura:attribute name="async" type="Boolean" default="true" />
+        <aura:attribute name="callbackMethod" type="Object" />
+    </aura:method>	
+</aura:component>

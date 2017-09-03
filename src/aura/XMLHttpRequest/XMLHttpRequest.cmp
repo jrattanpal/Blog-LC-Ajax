@@ -1,0 +1,18 @@
+<aura:component >
+    <aura:attribute name="address" type="String" access="global" default="1 Market St, San Francisco, CA 94105, USA" />
+    <aura:attribute name="apikey" type="String" access="global" />
+    
+    <aura:attribute name="msg" type="String" default=""/>
+    <aura:attribute name="msgSeverity" type="String" />
+    <aura:attribute name="msgTitle" type="String" />
+    
+    <c:Utils aura:id="utils" />	
+    <lightning:input type="text" label="Address" name="{!v.address}" value="{!v.address}" />
+    <lightning:input type="text" label="API Key" name="{!v.apikey}" value="{!v.apikey}"/>
+    <lightning:button label="Call Ajax" onclick="{!c.buttonPress}" />
+    <aura:if isTrue="{! v.msg != '' }">
+	    <ui:message severity="{!msgSeverity}" title="{!v.msgTitle}">
+            {!v.msg}
+        </ui:message>
+    </aura:if>
+</aura:component>
